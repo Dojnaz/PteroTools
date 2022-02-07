@@ -1,5 +1,6 @@
 {
   "ptero_api_url": "",
   "ptero_api_key": "",
-  "debug": false
+  "debug": false, 
+  "version": 1 
 }
