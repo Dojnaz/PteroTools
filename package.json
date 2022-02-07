@@ -1,0 +1,23 @@
+{
+  "name": "pterotools",
+  "version": "1.0.0",
+  "description": "The perfect tool for hosters which are using pterodactyl!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dojnaz/PteroTools.git"
+  },
+  "author": "Demon Martin#0193",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dojnaz/PteroTools/issues"
+  },
+  "homepage": "https://github.com/Dojnaz/PteroTools#readme",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "enquirer": "^2.3.6"
+  }
+}
