@@ -29,7 +29,7 @@ if (!fs.existsSync(`./config.json`)) {
     return;
 }
 
-//JSONS
+//JSON
 let config = JSON.parse(fs.readFileSync(`./config.json`))
 
 if (config.version < tempconfig.version) {
