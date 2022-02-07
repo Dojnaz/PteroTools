@@ -2,9 +2,21 @@
 
 //PACKAGES
 const { prompt } = require('enquirer');
+const axios = require("axios").default
 const fs = require("fs")
 //JSON
-if(!fs.readFileSync(`./config.json`)) return
+if (!fs.existsSync(`./config.json`)) {
+    console.log("Missing config.json! Downloading template.")
+    axios.get(`https://raw.githubusercontent.com/Dojnaz/PteroTools/main/config.json`)
+        .then((res) => {
+            fs.writeFileSync(`./config.json`, JSON.stringify(res.data, null, 2))
+            console.log("Succesfully downloaded config.json! Please fill the missing information and credentials in config.json")
+        }).catch((err) => {
+            //console.log(`Detected error while trying to download missing config.json!\n`+err)
+            console.log(err)
+        })
+    return;
+}
 let config = JSON.parse(fs.readFileSync(`./config.json`))
 
 console.log(config)
