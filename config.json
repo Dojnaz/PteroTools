@@ -1,4 +1,5 @@
 {
-    "ptero_api_url": "",
-    "ptero_api_key": ""
+  "ptero_api_url": "",
+  "ptero_api_key": "",
+  "debug": false
 }
