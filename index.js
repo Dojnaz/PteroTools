@@ -8,7 +8,7 @@ const fs = require("fs")
 //VERSION CHECK
 let tempconfig = [];
 axios.get(`https://raw.githubusercontent.com/Dojnaz/PteroTools/main/config.json`).then((res) => {
-    tempconfig = res.data;
+    tempconfig = JSON.stringify(res.data, null, 2)
 }).catch((err) => {
     console.log(`error while trying to get the template config (tool version)`);
     console.error(err);
@@ -19,7 +19,7 @@ axios.get(`https://raw.githubusercontent.com/Dojnaz/PteroTools/main/config.json`
 if (!fs.existsSync(`./config.json`)) {
     console.log("Missing config.json! Downloading template.")
     try {
-        fs.writeFileSync(`./config.json`, JSON.stringify(tempconfig, null, 2))
+        fs.writeFileSync(`./config.json`, tempconfig)
     } catch (err) {
         console.log(`error while trying to replace the template config (missing config)`);
         console.error(err);
