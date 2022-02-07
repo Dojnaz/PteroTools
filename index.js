@@ -4,19 +4,32 @@
 const { prompt } = require('enquirer');
 const axios = require("axios").default
 const fs = require("fs")
+
+//VERSION CHECK
+let tempconfig = [];
+axios.get(`https://raw.githubusercontent.com/Dojnaz/PteroTools/main/config.json`).then((res) => {
+tempconfig = res.data;
+}).catch((err) => {
+    console.log(`error while trying to get the template config (tool version)`);
+    console.error(err);
+    return;
+})
+
 //JSON
 if (!fs.existsSync(`./config.json`)) {
     console.log("Missing config.json! Downloading template.")
-    axios.get(`https://raw.githubusercontent.com/Dojnaz/PteroTools/main/config.json`)
-        .then((res) => {
-            fs.writeFileSync(`./config.json`, JSON.stringify(res.data, null, 2))
-            console.log("Succesfully downloaded config.json! Please fill the missing information and credentials in config.json")
-        }).catch((err) => {
-            //console.log(`Detected error while trying to download missing config.json!\n`+err)
-            console.log(err)
-        })
+    fs.writeFileSync(`./config.json`, JSON.stringify(res.data, null, 2)).catch((err) => {
+        console.log(`error while trying to replace the template config (missing config)`);
+        console.error(err);
+        return;
+    })
+    console.log("Succesfully replaced config.json! Please fill the missing information and credentials in config.json")
     return;
 }
 let config = JSON.parse(fs.readFileSync(`./config.json`))
 
-console.log(config)
+if (config.version < tempconfig.version) {
+    console.log(`Detected outdated version. Please download a new version at https://github.com/Dojnaz/PteroTools`)
+}
+
+if (config.debug == true) console.log(config);
