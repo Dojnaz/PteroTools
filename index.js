@@ -21,11 +21,11 @@ if (!fs.existsSync(`./config.json`)) {
     try {
         fs.writeFileSync(`./config.json`, tempconfig)
     } catch (err) {
-        console.log(`error while trying to replace the template config (missing config)`);
+        console.log(`Error while trying to create template config (missing config)`);
         console.error(err);
         return;
     }
-    console.log("Succesfully replaced config.json! Please fill the missing information and credentials in config.json")
+    console.log("Succesfully created config.json! Please fill in the missing information and credentials in config.json")
     return;
 }
 
@@ -33,7 +33,7 @@ if (!fs.existsSync(`./config.json`)) {
 let config = JSON.parse(fs.readFileSync(`./config.json`))
 
 if (config.version < tempconfig.version) {
-    console.log(`Detected outdated version. Please download a new version at https://github.com/Dojnaz/PteroTools`)
+    console.log(`A new version has been released. Please download the new version at https://github.com/Dojnaz/PteroTools`)
 }
 
 if (config.debug == true) console.log(config);
@@ -42,7 +42,7 @@ if (config.debug == true) console.log(config);
 function writelog(enabled, type, data) {
     if (enabled != "true") return;
     if (!fs.existsSync(`./logs/`)) {
-        console.log("Detected no logs folder. Making one!")
+        console.log("Logs folder not found. Creating one!")
         fs.mkdirSync(`./logs/`)
     }
     var curnt_date = new Date()
@@ -57,11 +57,11 @@ if (!config) {
     try {
         fs.writeFileSync(`./config.json`, tempconfig)
     } catch (err) {
-        console.log(`error while trying to replace the template config (missing config)`);
+        console.log(`Error while creating config file (missing config)`);
         console.error(err);
         return;
     }
-    console.log("Succesfully replaced config.json! Please fill the missing information and credentials in config.json")
+    console.log("Succesfully created config.json! Please fill in the missing information and credentials in config.json")
     return;
 }
 
@@ -86,7 +86,7 @@ if (debug == false) {
 //STARTUP
 const startup = new Select({
     name: 'area',
-    message: 'Please select where the pterodactyl api is located in.',
+    message: 'Select category',
     choices: ["Users", "Nodes", "Locations", "Servers", "Nests"]
 })
 try {
